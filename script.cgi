@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/sepseel/anaconda3/bin/python
 import spel
 import os
 
@@ -17,19 +17,23 @@ def do_move(status, zet, coord=(0, 0)):
     return board.status()
 
 
+def parse_querry(query):
+    for func in query.split('&'):
+        f = func.split('=')[0]
+        try:
+            args = func.split('=')[1]
+        except:
+            args = ''
+        args = args.replace(';', ', ') if isinstance(args, str) else args
+        return eval(f + '(' + args + ')')
+        
+
+
 def print_bord(status):
     for lijn in status['board']:
         print(lijn)
-#status = new_game()
-#print_bord(status)
-#for i in range(10):
-#    print('*'*20)
-#    print('zet: ', status['moves'][0])
-#    status = do_move(status, status['moves'][0])
-#    print_bord(status)
-
 
 print("Content-type: text/plain\n")
-querys = os.environ.get("QUERY_STRING")
-querys = querys.split('&')
-print(querys)
+query = os.environ.get("QUERY_STRING")
+
+
