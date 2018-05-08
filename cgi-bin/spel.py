@@ -10,6 +10,7 @@ class Spel:
         self.score = status['score']
         self.rooster = status['board']
         self.druppeltegel = (0, 0)
+        self.updateVlek()
                 
     def __str__(self):
         """
