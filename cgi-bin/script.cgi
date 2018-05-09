@@ -1,4 +1,6 @@
 #!/home/sepseel/anaconda3/bin/python
+##!/usr/bin/env python
+
 from spel import Spel
 import cgitb
 import os
