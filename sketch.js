@@ -1,7 +1,7 @@
 var staat = {};
 var grid = false;
-const url = "http://users.ugent.be/~sevbesau/cgi-bin/script.cgi?";
-
+//const url = "http://users.ugent.be/~sevbesau/cgi-bin/script.cgi?";
+var url = "http://0.0.0.0:8080/cgi-bin/script.cgi?";
 
 
 
@@ -27,6 +27,7 @@ update = function(state) {
     for (let move of state.moves) {
         $('#' + move).show()
     }
+    $("#colour").val("Pick");
 
     // score updaten
     $('#score').text('score: ' + state.score)
@@ -37,7 +38,7 @@ update = function(state) {
     }
     
     // state opslagen als stringweergave
-    staat = "'" + JSON.stringify(state) + "'"
+    staat = JSON.stringify(state)
 }
 
 makeGrid = function(n) {
@@ -59,7 +60,7 @@ Startnew = function() {
     })
     .then(function(myJson) {
         update(myJson);
-        console.log(myJson)
+        console.log('new', myJson)
     });
     
 }
@@ -81,11 +82,13 @@ makeGrid(5);
 Startnew();
 $(document).ready(function(){
     // word uitgevoerd wanneer alle html geladen is
-    //Startnew();
 
     $('#00').click(function(){
-        let kleur = "'" + $('#colour').val() + "'"
-        maakZet(staat, kleur);
+        let kleur = $('#colour').val()
+        console.log(kleur)
+        if (kleur != 'Pick') {
+            maakZet(staat, "'" + kleur + "'");
+        }   
     })
 
     $('#new').click(function(){

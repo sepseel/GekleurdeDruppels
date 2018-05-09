@@ -2,15 +2,19 @@ import random
 
 class Spel:
     
-    def __init__(self, status):
+    def __init__(self, score, rooster, size, vlek=[[0, 0]], new=False):
         """
         tegel = (rij, kol)
         """
-        self.vlek = status['vlek']
-        self.score = status['score']
-        self.rooster = status['board']
         self.druppeltegel = (0, 0)
-        self.updateVlek()
+        self.vlek = vlek
+        self.score = score
+        if new:
+            self.rooster = maakRooster(size)
+            self.updateVlek(self.rooster[0][0])
+        else:
+            self.rooster = rooster
+        self.moves = zetten(self.rooster)
                 
     def __str__(self):
         """
@@ -71,9 +75,9 @@ class Spel:
                     return False
         return True
     
-    def status(self):
+    def state(self):
         """
-        geeft JSON object trug met de huidige status
+        geeft dict trug met de huidige status
         """
         state = {
                     'vlek': self.vlek,
