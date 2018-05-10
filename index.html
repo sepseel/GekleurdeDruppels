@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>test</title>
+    <title>GekleurdeDruppels</title>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,10 +19,10 @@
         <hr/>
 
         <div class="controls">
-            <button id='new' type="button">New game</button>
-            <select id='colour'> 
-                <option value='Pick'>Kleuren</option>                   
-                <option id='green' value="green">groen</option>
+            <button class="button" id='new' type="button">New game</button>
+            <select class="button" id='colour' onchange="this.className = this.options[this.selectedIndex].className"> 
+                <option id="colour kleuren" value='Pick'>Kleuren</option>                   
+                <option id='green colour' value="green">groen</option>
                 <option id='red' value="red">rood</option>
                 <option id='orange' value="orange">oranje</option>
                 <option id='blue' value="blue">blauw</option>  
