@@ -11,7 +11,7 @@ body {
 
 .container {
 	margin: auto;
-	width: 50%;
+	width: 45%;
 	background: white;
 }
 
@@ -28,7 +28,7 @@ h1 {
 
 
 .button {
-	background-color: red;
+	background-color: gray;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -58,34 +58,12 @@ h1 {
 	margin: 0px 2px;
 }
 
-#kleuren {
-	background-color: gray;
-}
-
-#green {
-	background-color: green;
-}
-
-#red {
-	/*background-color: red;*/
-}
-
-.purple {
-	background-color: purple;
-}
-
-.orange {
-	background-color: orange;
-}
-
-.blue {
-	background-color: blue;
-}
-
-
-
-#colour {
+.color {
     padding: 14px 37px;
+}
+
+#score {
+	padding: 10px 0px;
 }
 
 @media (max-width: 800px) {
@@ -98,7 +76,7 @@ h1 {
 		padding: 10px 25px;
 	}
 
-	#colour {
+	.color {
 		padding: 9px 30px;
 	}
 }

@@ -27,7 +27,7 @@ update = function(state) {
     for (let move of state.moves) {
         $('#' + move).show()
     }
-    $("#colour").val("Pick");
+    $("#colour").val("gray");
 
     // score updaten
     $('#score').text('score: ' + state.score)
@@ -79,13 +79,8 @@ maakZet = function(staat, kleur) {
 };
 
 function setColours(){
-  var cur_kleur = $("#colour").val();
-  if(cur_kleur != "Pick"){
-    $("#colour").css("background-color", cur_kleur);
-    $("#new").css("background-color", cur_kleur);
-
-  }
-
+    var cur_kleur = $(".color").val();
+    $(".color").css("background-color", cur_kleur);
 }
 
 
@@ -94,16 +89,18 @@ makeGrid(5);
 Startnew();
 $(document).ready(function(){
     // word uitgevoerd wanneer alle html geladen is
-    $("#colour").change(function(){
+
+    $(".color").change(function(){
       setColours();
     });
 
     $('#00').click(function(){
         let kleur = $('#colour').val()
         //console.log(kleur)
-        if (kleur != 'Pick') {
+        if (kleur != 'gray') {
             maakZet(staat, "'" + kleur + "'");
         }
+        $('.color').css('background-color', 'gray')
     })
 
     $('#new').click(function(){
