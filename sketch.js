@@ -1,12 +1,12 @@
 var staat = {};
 var grid = false;
-//const url = "http://users.ugent.be/~sevbesau/cgi-bin/script.cgi?";
-var url = "http://0.0.0.0:8080/cgi-bin/script.cgi?";
+const url = "http://users.ugent.be/~sevbesau/cgi-bin/script.cgi?";
+//var url = "http://0.0.0.0:8080/cgi-bin/script.cgi?";
 
 
 
 update = function(state) {
-    // als er nog geen grid van divs bestaat, maak er dan een 
+    // als er nog geen grid van divs bestaat, maak er dan een
     if (!grid) {
         makeGrid(state.board.length);
         grid = true;
@@ -18,7 +18,7 @@ update = function(state) {
             $('#' + i + "" + j).css('background', state.board[i][j])
         }
     }
-    
+
     // zetten updaten
     let kleuren = ['#green', '#red', '#orange', '#blue', '#purple'];
     for (let kleur of kleuren) {
@@ -36,7 +36,7 @@ update = function(state) {
     if (state.message) {
         alert(state.message);
     }
-    
+
     // state opslagen als stringweergave
     staat = JSON.stringify(state)
 }
@@ -56,39 +56,54 @@ Startnew = function() {
     // start een nieuw spel
     fetch(url + "new_game")
     .then(function(response) {
-        return response.json(); 
+        return response.json();
     })
     .then(function(myJson) {
         update(myJson);
         console.log('new', myJson)
     });
-    
+
 }
 
 maakZet = function(staat, kleur) {
     // maakt een zet op basis van de opgeslagen staat en de geselecteerde kleur
+
     fetch(url + 'do_move=' + staat + '+' + kleur)
     .then(function(response) {
-        return response.json(); 
+        return response.json();
     })
     .then(function(myJson) {
         update(myJson);
-        console.log(myJson)
+        //console.log(myJson)
     });
 };
+
+function setColours(){
+  var cur_kleur = $("#colour").val();
+  if(cur_kleur != "Pick"){
+    $("#colour").css("background-color", cur_kleur);
+    $("#new").css("background-color", cur_kleur);
+
+  }
+
+}
+
 
 
 makeGrid(5);
 Startnew();
 $(document).ready(function(){
     // word uitgevoerd wanneer alle html geladen is
+    $("#colour").change(function(){
+      setColours();
+    });
 
     $('#00').click(function(){
         let kleur = $('#colour').val()
-        console.log(kleur)
+        //console.log(kleur)
         if (kleur != 'Pick') {
             maakZet(staat, "'" + kleur + "'");
-        }   
+        }
     })
 
     $('#new').click(function(){
@@ -96,4 +111,3 @@ $(document).ready(function(){
     });
 
 });
-
